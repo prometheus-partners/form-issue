@@ -1,0 +1,29 @@
+<form [formGroup]="formTable">
+  <table class="table">
+    <ng-container *ngFor="let control of formTable.get('rows')['controls']; let i=index">
+      <tr>
+        <td>
+          <pol-form-table-field [formField]="control" [tableConfig]="_tableData.inputType" [index]="i"></pol-form-table-field>
+        </td>
+        <td *ngIf="control.get('isEditable').value">
+          <button mat-icon-button [disabled]="this.formTable.invalid || this.formTable.untouched" (click)="doneRow(i)">
+            <mat-icon class="done">save</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteRow(i)">
+            <mat-icon class="delete">delete_forever</mat-icon>
+          </button>
+        </td>
+        <td *ngIf="!!!control.get('isEditable').value">
+          <button mat-icon-button (click)="editRow(i)">
+            <mat-icon class="edit">edit</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+  <div class="field-group">
+    <mat-dialog-actions>
+      <button mat-stroked-button [disabled]="!!!this.formTable.untouched" type="button" (click)="addRow()">Add Row</button>
+    </mat-dialog-actions>
+  </div>
+</form>
