@@ -1,7 +1,11 @@
 <p>app.component works!</p>
 
+<pol-form-table 
+    class="form-table" 
+    [tableData]="shiftBreakData" 
+    (dataUpdate)="updateBreaks($event)"
+    ></pol-form-table>
 
 
 
-
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
